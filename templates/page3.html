@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% set static_url = '/Users/MGBiMACmini_0002/Desktop/Yuvraaj/POCs/PDF_Gen_System/python_pdf_cli/assets' %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptitude Plus</title>
+    <style>
+        @page {
+            size: A4; /* Set page size to A4 */
+            margin: 0mm; /* Adjust margin to fit content */
+        }
+        @font-face {
+            font-family: 'Montserrat Alternates';
+            font-style: normal;
+            /* font-weight: 900; */
+            src: local('Montserrat Alternates'), url('{{ static_url }}/fonts/MontserratAlternates-Black.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Montserrat Alternates';
+            font-style: normal;
+            /* font-weight: 600; */
+            src: local('Montserrat Alternates'), url('{{ static_url }}/fonts/MontserratAlternates-SemiBold.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'Georgia';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Georgia'), url('{{static_url}}/fonts/georgia.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: 'Noto Sans KR';
+            font-style: normal;
+            font-display: swap;
+            src: local('Noto Sans KR'), url('{{static_url}}/fonts/NotoSansKR-Regular.woff2') format('woff2');
+        }
+        @font-face {
+            /* notosanscjkjpbold */
+            /* Link */
+            /* https://github.com/tweeeety/font-noto-sans/blob/master/NotoSansCJKjp-hinted_converted/NotoSansCJKjp-Bold.ttf */
+            font-family: 'NotoSansCJKjp';
+            /* font-style: normal; */
+            font-display: swap;
+            src: local('NotoSansCJKjp'), url('{{ static_url }}/fonts/NotoSansCJKjp-Bold.ttf') format('ttf');
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0 auto;
+            padding: 0;
+            color: #333;
+            background-color: #f1f9ff;
+        }
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .side-div {
+            flex: 0 1 0; /* Takes 15% of the width, but not less than 15% */
+        }
+        .middle-div {
+            flex: 1; /* Takes remaining space (3/4) */
+            flex-direction: column;
+            flex-flow: wrap;
+            align-items: center;
+        }
+        footer {
+            position: relative;
+            /* height: 400px; */
+            margin-top: 180px;
+        }
+        hr {
+            border: none;
+            height: 1px;
+            width: 84%;
+            /* Set the hr color */
+            color: #d9d9d9;  /* old IE */
+            background-color: #d9d9d9;  /* Modern Browsers */
+        }
+        .webp-chart {
+            /* position: absolute; */
+            /* top: 0;
+            left: 0px; */
+            width: 70%; /* Cover the entire width */
+            height: 68%; /* Cover the entire height */
+            justify-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div style="background:#f1f9ff;">
+        <section>
+            <div style="padding-top:30px;">
+                <p style="font-family:NotoSansCJKjp;font-weight:600;color:#391A56;font-size:20px;text-align:center;line-height:1.8em;"> What Is My Interest Type?</p>
+                <hr style="width:73%;text-align:center;height:0.5px;color:#E2E2E3; margin-top: -10px;">
+            </div>
+            <p style="font-family:'Noto Sans KR', sans-serif;font-weight: 400;color:#4D4D4D;font-size:15px;text-align:center;line-height:1.6em;margin-left:100px;margin-right:100px;margin-top:25px;">
+                "For customer {{ data.OrderInfo.patient_name }}, our result indicates stronger associations with
+                <span style="color:#7B3DE8;">Social</span> and <span style="color:#7B3DE8;">Conventional </span>types compared to 4 other interest types."
+            </p>
+        </section>
+    
+        <section style="margin-top: -22px;">
+            <!-- Actual Graph -->
+            <div style="margin-left: 190px;position: relative;margin-top:30px;">
+                <!-- SVG Base64 Path -->
+                {# <img src="data:image/svg+xml;base64,{{data.RadarGraphBase64}}"  width="350" height="360" class="img-fluid mx-auto d-block"/> #}
+                <img src="data:image/svg+xml;base64,{{ data.RadarGraphBase64 }}" style="width: 62%; height: 62%; display: block; justify-items: center; text-align: center; margine-right:-25px" />
+
+                <!-- WebP Base64 Path -->
+                {# <img src="data:image/svg+xml;base64,{{ data.RadarGraphBase64 | safe }}" class="webp-chart" /> #}
+
+                <!-- WebP Image Path -->
+                {# <img src="/Users/MGBiMACmini_0002/Desktop/Yuvraaj/POCs/PDF_Gen_System/python_pdf_cli/assets/images/radar_chart.webp" alt="Polar Radar Chart Image" class="webp-chart"> #}
+                {# <img src="{{ static_url }}/static/radar_chart.webp" alt="Polar Radar Chart Image" class="webp-chart"> #}
+            </div>
+
+            <!-- hexagon side values -->
+            <table style="width: 100%;position:absolute;top:12.3%;left:-1.3%;">
+                <tr>
+                    <td style="text-align: center;height:130px;" colspan="3">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+                                <g id="Group_7787" data-name="Group 7787" transform="translate(-52.675 -75.675)">
+                                    <circle id="Ellipse_2" data-name="Ellipse 2" cx="15" cy="15" r="15" transform="translate(52.675 75.675)" fill="#76eefb"/>
+                                    <text id="R" transform="translate(61.676 94.675)" fill="#391a56" font-size="15" font-family="'Georgia', sans-serif;" font-weight="700" font-style="italic" letter-spacing="-0.04em" text-anchor="middle"><tspan x="6" y="2">A</tspan></text>
+                                </g>
+                            </svg>
+                        </div>
+                        <p style="font-family:'Noto Sans KR', sans-serif; font-weight:400;font-size:12px;margin:0px">Artistic</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:34%;text-align:right;height:140px;vertical-align:top;">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+                                <g id="Group_7787" data-name="Group 7787" transform="translate(-52.675 -75.675)">
+                                    <circle id="Ellipse_2" data-name="Ellipse 2" cx="15" cy="15" r="15" transform="translate(52.675 75.675)" fill="#ffe681"/>
+                                    <text id="R" transform="translate(61.676 94.675)" fill="#391a56" font-size="15" font-family="'Georgia', sans-serif;" font-weight="700" font-style="italic" letter-spacing="-0.04em" text-anchor="middle"><tspan x="6" y="2">S</tspan></text>
+                                </g>
+                            </svg>
+                        </div>
+                        <p style="font-family:'Noto Sans KR', sans-serif; font-weight:400;font-size:12px;margin:0px;">Social</p>
+                    </td>
+                    <td style="width:32%;">&nbsp;</td>
+                    <td style="width:34%;text-align:left;height:140px;vertical-align:top;">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+                                <g id="Group_7787" data-name="Group 7787" transform="translate(-52.675 -75.675)">
+                                    <circle id="Ellipse_2" data-name="Ellipse 2" cx="15" cy="15" r="15" transform="translate(52.675 75.675)" fill="#58a1fc"/>
+                                    <text id="R" transform="translate(61.676 94.675)" fill="#391a56" font-size="15" font-family="'Georgia', sans-serif;" font-weight="700" font-style="italic" letter-spacing="-0.04em" text-anchor="middle"><tspan x="6" y="2">C</tspan></text>
+                                </g>
+                            </svg>
+                        </div>
+                        <p style="font-family:'Noto Sans KR', sans-serif; font-weight:400;font-size:12px;margin:0px">Conventional</p>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="text-align:right;height:100px;">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+                                <g id="Group_7787" data-name="Group 7787" transform="translate(-52.675 -75.675)">
+                                    <circle id="Ellipse_2" data-name="Ellipse 2" cx="15" cy="15" r="15" transform="translate(52.675 75.675)" fill="#7582fb"/>
+                                    <text id="R" transform="translate(61.676 94.675)" fill="#391a56" font-size="15" font-family="'Georgia', sans-serif;" font-weight="700" font-style="italic" letter-spacing="-0.04em" text-anchor="middle"><tspan x="6" y="2">R</tspan></text>
+                                </g>
+                            </svg>
+                        </div>
+                        <p style="font-family:'Noto Sans KR', sans-serif; font-weight:400;font-size:12px;margin:0px">Realistic</p>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td style="text-align:left;height:100px;">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+                                <g id="Group_7787" data-name="Group 7787" transform="translate(-52.675 -75.675)">
+                                    <circle id="Ellipse_2" data-name="Ellipse 2" cx="15" cy="15" r="15" transform="translate(52.675 75.675)" fill="#fb8c78"/>
+                                    <text id="R" transform="translate(61.676 94.675)" fill="#391a56" font-size="15" font-family="'Georgia', sans-serif;" font-weight="700" font-style="italic" letter-spacing="-0.04em" text-anchor="middle"><tspan x="6" y="2">E</tspan></text>
+                                </g>
+                            </svg>
+                        </div>
+                        <p style="font-family:'Noto Sans KR', sans-serif; font-weight:400;font-size:12px;margin:0px">Enterprising</p>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="text-align: center;" colspan="3">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+                                <g id="Group_7787" data-name="Group 7787" transform="translate(-52.675 -75.675)">
+                                    <circle id="Ellipse_2" data-name="Ellipse 2" cx="15" cy="15" r="15" transform="translate(52.675 75.675)" fill="#78fbb2"/>
+                                    <text id="R" transform="translate(61.676 94.675)" fill="#391a56" font-size="15" font-family="'Georgia', sans-serif;" font-weight="700" font-style="italic" letter-spacing="-0.04em" text-anchor="middle"><tspan x="6" y="2">I</tspan></text>
+                                </g>
+                            </svg>
+                        </div>
+                        <p style="font-family:'Noto Sans KR', sans-serif; font-weight:400;font-size:12px;margin:0px">Investigative</p>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    
+        <section class="">
+            <!-- pointers -->
+            <div style="width:81%;margin-left:120px;margin-top:-28px;">
+                <!-- Social-->
+                {% for item in data.EDAPPGS006.ResultInfo.result_type %}
+                    {% set outer_loop = loop %}
+    
+                    {% for key, value in data.EDAPPGS006.ResultInfo.genetic_results.items() %}
+                    {% if value.item_code == item %}
+                    <div style="display: grid; grid-template-columns: 0px auto; column-gap: 20px;" >
+                        <div style="position: relative; text-align:center; justify-items: center; align-items: center;">
+                            <div style="margin-top:25px;">
+                                <!--hexagon S-->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+                                    {% if value.item_code|e == "A" %}
+                                        <path id="Polygon_9" data-name="Polygon 9" d="M57.773,0,77.031,33.333,57.773,66.667H19.258L0,33.333,19.258,0Z" transform="translate(66.667) rotate(90)" fill="#76eefb" font-family="'Georgia', sans-serif;"/>
+                                    {% elif value.item_code|e == "C" %}
+                                        <path id="Polygon_9" data-name="Polygon 9" d="M57.773,0,77.031,33.333,57.773,66.667H19.258L0,33.333,19.258,0Z" transform="translate(66.667) rotate(90)" fill="#7582fb" font-family="'Georgia', sans-serif;"/>
+                                    {% elif value.item_code|e == "E" %}
+                                        <path id="Polygon_9" data-name="Polygon 9" d="M57.773,0,77.031,33.333,57.773,66.667H19.258L0,33.333,19.258,0Z" transform="translate(66.667) rotate(90)" fill="#fb8c78" font-family="'Georgia', sans-serif;"/>
+                                    {% elif value.item_code|e == "I" %}
+                                        <path id="Polygon_9" data-name="Polygon 9" d="M57.773,0,77.031,33.333,57.773,66.667H19.258L0,33.333,19.258,0Z" transform="translate(66.667) rotate(90)" fill="#78fbb2" font-family="'Georgia', sans-serif;"/>
+                                    {% elif value.item_code|e == "R" %}
+                                        <path id="Polygon_9" data-name="Polygon 9" d="M57.773,0,77.031,33.333,57.773,66.667H19.258L0,33.333,19.258,0Z" transform="translate(66.667) rotate(90)" fill="#cf74fc" font-family="'Georgia', sans-serif;"/>
+                                    {% elif value.item_code|e == "S" %}
+                                        <path id="Polygon_9" data-name="Polygon 9" d="M57.773,0,77.031,33.333,57.773,66.667H19.258L0,33.333,19.258,0Z" transform="translate(66.667) rotate(90)" fill="#ffe681" font-family="'Georgia', sans-serif;"/>
+                                    {% else %}
+                                        <path id="Polygon_9" data-name="Polygon 9" d="M57.773,0,77.031,33.333,57.773,66.667H19.258L0,33.333,19.258,0Z" transform="translate(66.667) rotate(90)" fill="#cf74fc" font-family="'Georgia', sans-serif;"/>
+                                    {% endif %}
+                                </svg>
+                            </div>
+                            <div style="color:#391A56; text-align:center; margin-top: -82px; position: relative; z-index: 1;">
+                                <h3 style="font-family:'Georgia', sans-serif;;color:#391A56;font-size:20.5px;margin:0px 0px 0px 27px;">
+                                    {{ value.item_code|e }}
+                                </h3>
+                                <p style="font-family:'Noto Sans KR', sans-serif; font-weight: 500; margin-top:-30px;font-size:11px;line-height:1.1em;margin-top: -1px; margin-left: 13px;">
+                                    {# {{ value.holland_code }} #}
+                                    {{ (value.holland_code ~ '\n') | wordwrap(7) | replace('\n', '-<br/>')}}
+                                </p>
+                            </div>
+                        </div>
+                
+                        <div style="margin-left: 80px; margin-right: 90px;">
+                            <div>
+                                <p style="font-family:'Noto Sans KR', sans-serif;color:#391A56;font-size:16px;text-align:left;line-height:1.6em;margin:25px 0px 0px 0px;">{{ value.holland_code }}</p>
+                            </div>
+                            <div>
+                                {% if outer_loop.index == 1 %}
+                                    <p style="font-family:Noto Sans KR; font-weight: 500; color:#3c3c3c;font-size:14px;text-align:left;line-height:1.6em;margin:5px 0px 0px 0px;padding:0px;">
+                                        "{{ data.EDAPPGS006.ResultInfo.interest_1_title }}" 
+                                    </p>
+                                    <p style="font-family:Noto Sans KR; font-weight: 300; color:#5E5E5E;font-size:11px;text-align:justify;line-height:1.6em;padding:0px;margin:0px;">
+                                        {{ data.EDAPPGS006.ResultInfo.interest_1_comment }}
+                                    </p>
+                                {% elif outer_loop.index == 2 %}
+                                    <p style="font-family:Noto Sans KR; font-weight: 500; color:#262626;font-size:14px;text-align:left;line-height:1.6em;margin:5px 0px 0px 0px;padding:0px;">
+                                        "{{ data.EDAPPGS006.ResultInfo.interest_2_title }}" 
+                                    </p>
+                                    <p style="font-family:Noto Sans KR; font-weight: 300; color:#5E5E5E;font-size:11px;text-align:justify;line-height:1.6em;padding:0px;margin:0px;">
+                                        {{ data.EDAPPGS006.ResultInfo.interest_2_comment }}
+                                    </p>
+                                {% elif outer_loop.index == 3 %}
+                                    <p style="font-family:Noto Sans KR; font-weight: 500; color:#262626;font-size:14px;text-align:left;line-height:1.6em;margin:5px 0px 0px 0px;padding:0px;">
+                                        "{{ data.EDAPPGS006.ResultInfo.interest_3_title }}" 
+                                    </p>
+                                    <p style="font-family:Noto Sans KR; font-weight: 300; color:#5E5E5E;font-size:11px;text-align:justify;line-height:1.6em;padding:0px;margin:0px;">
+                                        {{ data.EDAPPGS006.ResultInfo.interest_3_comment }}
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+    
+                {% endfor %}
+            </div>
+        </section>
+
+        <section>
+            <!-- footer -->
+            <footer>
+                <table style="margin-top:-70px;margin-left:50px;margin-right:5px; border-top: 0.4px solid #391a56;width:87%;">
+                    <tr>
+                        <td style="width:80%;">
+                            <p style="font-family: 'Montserrat Alternates', sans-serif;color:#391a56;font-size:13px;font-weight: 600;margin:10px 0px 0px 0px;padding:0px;">Aptitude Plus</p>
+                        </td>
+                        <td>
+                            <p style="font-family:'Georgia', sans-serif;font-style:italic;color:#5E5E5E;font-size:14px;text-align:right;padding-right:10px;margin:5px 0px 0px 0px;padding:0px;">3</p>
+                        </td>
+                    </tr>
+                </table>
+            </footer>
+        </section>
+    </div>
+</body>
+</html>
