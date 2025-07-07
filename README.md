@@ -19,7 +19,7 @@
 --  As per "required_chars.txt" file's chars, optimise, compress all possible font files from "fonts" directory and save them in "output" directory.
 --  Finally, use the "output" directory's fonts to generate PDF report using "WeasyPrint" (for Python) or any of your choice of package.
 
-# Benefit -- Why, "only used characters" specific "Font Files" optimiztion is necessary?
+# Benefit -- Why, "only used characters" specific "Font Files"" optimiztion is necessary?
 
 --  Speedily rendering html contnet before PDF generation.
 --  better allocation of resources (CPU, Memory) for PDF generation.
@@ -74,7 +74,7 @@ docker run --rm -v "$PWD/templates:/app/templates" -v "$PWD/fonts:/app/fonts" -v
 --  You can use them in your project by copying them to your project's static/fonts directory.
 --  Only ensure final code review for HTML / CSS templates before using them in production.
 
-# IMP Note : Use .woff or woff2 --> saved font files in output directory.
+# IMP Note : Use .woff or woff2 --> saved font files from output directory.
 
 --  For comparative files sizes , use log file generated in "output" directory.
 --  e.g. In your project, if you used "NotoSansCJKjp-VF.ttf" file before optimization,
