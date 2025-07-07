@@ -1,8 +1,10 @@
-# This mini project is helpful for those who are working on HTML Jinj2 templates
-# My Project's One of objective is about HTML to PDF Generation automation pipeline 
-# for customly designed PDF Reports generation.
+# Font-Files Compression & Optimisation using Python
 
-# Technology stack -- for Fonts Optimisation.
+--  This mini project is helpful for those who are working on HTML Jinj2 templates
+--  My Project's One of objective is about HTML to PDF Generation automation pipeline 
+    for customly designed PDF Reports generation.
+
+## Technology stack -- for Fonts Optimisation.
 1. Python
 2. HTML + CSS
 3. Jinja2
@@ -48,11 +50,10 @@ fonts related @font-face or <link /> tag's must be mentioned in .html templates
 --  CSS file path's not included in this script, you can modify python script as per your requirement, e.g. read font files path from CSS ("static/css/*.css") files as well.
 --  Then follow below steps to dockerize cli application.
 
-
-# Step 1 - Build Docker image
+## Step 1 - Build Docker image
 docker build -t font-html-optimizer .
 
-# Step 2 - Run Docker container (Use any one of below command)
+## Step 2 - Run Docker container (Use any one of below command)
 docker run --rm \
     -v "$PWD/templates:/app/templates" \
     -v "$PWD/fonts:/app/fonts" \
@@ -64,7 +65,7 @@ or
 docker run --rm -v "$PWD/templates:/app/templates" -v "$PWD/fonts:/app/fonts" -v "$PWD/output:/app/output" font-html-optimizer
 
 
-# Setp 3 - Once all fonts get saved in output directory, you can use them in your project.
+## Setp 3 - Once all fonts get saved in output directory, you can use them in your project.
 --  You can use them in your project by copying them to your project's static/fonts directory.
 --  Only ensure final code review for HTML / CSS templates before using them in production.
 
